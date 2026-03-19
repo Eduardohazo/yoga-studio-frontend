@@ -15,7 +15,7 @@ const LoginPage = () => {
   const location  = useLocation();
 
   // After login, redirect to where they came from (or dashboard)
-  const from = location.state?.from?.pathname || null;
+  const from = location.pathname || null;
 
   const validate = () => {
     const e = {};
@@ -46,7 +46,8 @@ const LoginPage = () => {
       // 2. If they are admin/teacher → go to their panel
       // 3. Otherwise → dashboard
       if (from && from !== '/login' && from !== '/register') {
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
+        console.log("hey!");
       } else if (user.role === 'admin') {
         navigate('/admin', { replace: true });
       } else if (user.role === 'teacher') {
